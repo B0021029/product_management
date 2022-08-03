@@ -1,0 +1,124 @@
+CREATE DATABASE order
+
+CREATE TABLE users(
+ user_id     nvarchar(20)  NOT NULL,
+ userName    nvarchar(20) NOT NULL,
+ password    nchar(20) NOT NULL,
+ e_mail      nchar(100),
+ permission  int,
+ PRIMARY KEY(user_id)
+ );
+
+
+
+
+CREATE TABLE types (
+ types_id    int   NOT NULL AUTO_INCREMENT,
+ goodsType  nvarchar(20) NOT NULL,
+ PRIMARY KEY(types_id)
+ );
+
+
+
+
+CREATE TABLE status(
+ status_id  tinyint   NOT NULL AUTO_INCREMENT,
+ status     nvarchar(10) NOT NULL,
+ PRIMARY KEY(status_id)
+);
+
+
+
+
+CREATE TABLE  products(
+ product_id     int   NOT NULL AUTO_INCREMENT,
+ types_id        int   NOT NULL,
+ goodsName      nvarchar(50) NOT NULL,
+ price          int   NOT NULL,
+ order_date     date NOT NULL,
+ order_user     nvarchar(20), NOT NULL,
+ status_id      tinyint NOT NULL,
+ delivered_date date,
+ PRIMARY KEY(product_id),
+ FOREIGN KEY(types_id) REFERENCES types (types_id),
+ FOREIGN KEY(order_user) REFERENCES users (user_id)
+ FOREIGN KEY(status_id) REFERENCES status(status_id)
+ );
+
+
+CREATE TABLE  results(
+ result_id      int NOT NULL AUTO_INCREMENT,
+ product_id     int   NOT NULL,
+ types_id        int   NOT NULL,
+ goodsName      nvarchar(50) NOT NULL,
+ price          int   NOT NULL,
+ order_date     date NOT NULL,
+ order_user     nvarchar(20), NOT NULL,
+ status_id      tinyint NOT NULL,
+ delivered_date date,
+ PRIMARY KEY(result_id),
+ FOREIGN KEY(types_id) REFERENCES types (types_id),
+ FOREIGN KEY(order_user) REFERENCES users (user_id),
+ FOREIGN KEY(status_id) REFERENCES status(status_id)
+ );
+
+
+
+
+
+INSERT INTO types(goodsType) VALUES
+('書籍'),
+('サプライ品'),
+('アウトドア用品'),
+('DVD'),
+('ゲーム'),
+('家電'),
+('カメラ'),
+('AV機器'),
+('パソコン・周辺機器'),
+('オフィス用品'),
+('食品・飲料'),
+('お酒'),
+('DYI'),
+('ペット'),
+('ビューティー'),
+('おもちゃ'),
+('服'),
+('スポーツ'),
+('アウトドア用品');
+
+INSERT INTO status(status) VALUES
+('発注済'),
+('納品済'),
+('未発注'),
+('返品');
+
+
+
+load data local
+infile 'users_data.csv'
+into table users
+fields
+    terminated by ','
+    enclosed by "'"
+    lines terminated by '\r\n'
+;
+
+
+
+load data local
+infile 'product_data.csv'
+into table products
+fields
+    terminated by ','
+    enclosed by "'"
+    lines terminated by '\r\n'
+;
+
+
+
+
+
+
+
+
