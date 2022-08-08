@@ -95,9 +95,9 @@ try {
            }
         if ($priceMin != "" && $priceMax != "" ){
             if (isset($query)){
-                $query = '$query INTERSECT SELECT * FROM products WHERE price >= :priceMin AND price <= :priceMax';
+                $query = '$query INTERSECT SELECT * FROM products WHERE price >= :priceMin AND price < :priceMax';
            }    else{
-                $query = 'SELECT * FROM products WHERE price >= :priceMin AND price <= :priceMax';
+                $query = 'SELECT * FROM products WHERE price >= :priceMin AND price < :priceMax';
            }
             $bind7 = ":priceMin";
             $bind8 = ":priceMax";
@@ -110,9 +110,9 @@ try {
                 $bind7 = ":priceMin";
            }    elseif ($priceMin == "" && $priceMax != "") {
                     if (isset($query)){
-                        $query = '$query INTERSECT SELECT * FROM products WHERE price <= :priceMax';
+                        $query = '$query INTERSECT SELECT * FROM products WHERE price < :priceMax';
                }    else{
-                    $query = 'SELECT * FROM products WHERE price <= :priceMax';
+                    $query = 'SELECT * FROM products WHERE price < :priceMax';
                }
                 $bind8 = ":priceMax";
            }
