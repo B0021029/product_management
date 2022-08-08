@@ -11,7 +11,7 @@
   $status = $_GET["status"];
   $delivered_date = $_GET["delivered_date"];
 
-  var_dump($status);
+  //var_dump($status);
   //var_dump($user_name);
   
   
@@ -85,7 +85,7 @@ try {
     $InsertPrice = $result[0]["price"];
     $InsertPrice = (string)$InsertPrice;
 
-    var_dump($InsertTypes_id);
+    //var_dump($InsertTypes_id);
 
     if($goodsName == $InsertGoodsName && $goodsTypes == $InsertTypes_id && $price == $InsertPrice && $order_user == $InsertOrder_user && $order_date == $InsertOrder_date && $delivered_date == $InsertDelivered_date && $status == $InsertStatus_id) {
         $message = "に新規注文履歴登録しました";
