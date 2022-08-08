@@ -95,7 +95,7 @@ $size = $_GET["size"];
     <input type="text" name="order_date1">
     <label for="order_date1"> 以降 ～ </label>
     <input type="text" name="order_date2">
-    <label for=""order_date2"> 以前 </label>
+    <label for="order_date2"> 以前 </label>
 
 
     <p></p>
