@@ -1,5 +1,5 @@
-<!-- 新規登録画面 -->
 <?php
+ 
 //$_GETで受け取る
 $user_name = $_GET["user_name"];
 $user_id = $_GET["user_id"];
@@ -26,7 +26,7 @@ $size = $_GET["size"];
 
   <form action="InsertData.php" method="get">
     <label for="goodsName">商品名：</label>
-    <input type="text" name="goodsName">
+    <input type="text" name="goodsName" required>
 
     <label for="goodsTypes">商品カテゴリー：</label>
     <select name="goodsTypes">
@@ -39,7 +39,7 @@ $size = $_GET["size"];
       <option value="6">家電</option>
       <option value="7">カメラ</option>
       <option value="8">AV機器</option>
-      <option value="9">パソコン・周辺機器</option>
+      <option value="9">パソコン</option>
       <option value="10">オフィス用品</option>
       <option value="11">食品・飲料</option>
       <option value="12">お酒</option>
@@ -49,17 +49,17 @@ $size = $_GET["size"];
       <option value="16">おもちゃ</option>
       <option value="17">服</option>
       <option value="18">スポーツ</option>
-      <option value="19">アウトドア用品</option>
+      <option value="19">車</option>
     </select>
 
     <p></p>
 
     <label for="price">価格：</label>
-    <input type="text" name="price">
+    <input type="text" name="price" required>
     <label for="currency">円</label>
     <p></p>
     <label for="order_date">注文日：</label>
-    <input type="text" name="order_date">
+    <input type="text" name="order_date" required>
 
     <label for="order_user">注文者：</label>
     <select name="order_user">

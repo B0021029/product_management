@@ -5,7 +5,7 @@
   $size = $_GET["size"];
   $product_id = $_GET["product_id"];
   $command = $_GET["command"];
-  var_dump($command);
+  //var_dump($command);
 
 try {
 

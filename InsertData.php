@@ -11,8 +11,8 @@
   $status = $_GET["status"];
   $delivered_date = $_GET["delivered_date"];
 
-  //var_dump($status);
-  //var_dump($user_name);
+  //var_dump($goodsName);
+  //var_dump($price);
   
   
 
@@ -31,6 +31,17 @@ try {
     );
 
     //SQLクエリ作成
+
+    $query_maxID = 'SELECT MAX(product_id) FROM products';
+    $stmt_maxID = $pdo->prepare($query_maxID);
+    $stmt_maxID->execute();
+    $MaxID = $stmt_maxID->fetchAll();
+    //var_dump($LastMaxID);
+    $LastMaxID = $MaxID[0]["MAX(product_id)"];
+    //var_dump($LastMaxID);
+    $LastMaxID++;
+    //var_dump($LastMaxID);
+
     //$query = 'SELECT * FROM users WHERE user_id = \'', $user=id, '\' AND password =\'' , $password , '\'';
     $query_Types = 'SELECT goodsType FROM types WHERE types_id = :goodsTypes';
     $stmt_goodsTypes = $pdo->prepare($query_Types);
@@ -76,23 +87,21 @@ try {
     $InsertProduct_id = $result[0]["product_id"];
     $InsertGoodsName = $result[0]["goodsName"];
     $InsertTypes_id = $result[0]["types_id"];
-    $InsertTypes_id = (string)$InsertTypes_id;
     $InsertOrder_user = $result[0]["order_user"];
     $InsertOrder_date = $result[0]["order_date"];
     $InsertDelivered_date = $result[0]["delivered_date"];
     $InsertStatus_id = $result[0]["status_id"];
-    $InsertStatus_id = (string)$InsertStatus_id;
     $InsertPrice = $result[0]["price"];
-    $InsertPrice = (string)$InsertPrice;
+    //var_dump($InsertProduct_id);
 
-    //var_dump($InsertTypes_id);
+    
 
-    if($goodsName == $InsertGoodsName && $goodsTypes == $InsertTypes_id && $price == $InsertPrice && $order_user == $InsertOrder_user && $order_date == $InsertOrder_date && $delivered_date == $InsertDelivered_date && $status == $InsertStatus_id) {
+    if($InsertProduct_id == $LastMaxID) {
         $message = "に新規注文履歴登録しました";
         $product_id = $InsertProduct_id;
         require_once 'Registration_tpl.php';
     }   else  {
-        require_once 'NewOrder.php';
+        require_once 'exception_tpl.php';
     } 
 
 
