@@ -26,7 +26,7 @@
 </head>
 <body>
  <h1><?php echo $message; ?>:<?php echo $begin; ?> ～ <?php echo $begin+10; ?> / <?php echo $subject; ?> 件中</h1>
- <table border=2>
+ <table border=2 style="background-color:#fff7;">
  <tr>
   <th>注文No</th>
   <th>商品名</th>
